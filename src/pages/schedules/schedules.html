@@ -10,13 +10,39 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-fab top right edge>
-    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
-  </ion-fab>
-  <ion-list *ngFor="let item of items">
-      <button ion-item>
-        <h2>{{item.nome}}</h2>
-      </button>
-  </ion-list>
+
+  <ion-card *ngFor="let item of items" (click)="showDetail(item)">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/{{item.rowerResposable.imageUrl}}">
+      </ion-avatar>
+      <h2>{{item.team.name}} - 05:45</h2>
+      <p>{{item.date | date:'EEEE, MMMM d, y'}}</p>
+    </ion-item>
+  
+    <img src="assets/imgs/{{item.team.imageUrl}}">
+  
+    <ion-card-content>
+      <p>{{item.obs}}</p>
+    </ion-card-content>
+  
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{item.numOfInscriptions}} Confirmados</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>0 Mensagens</div>
+        </button>
+      </ion-col>
+      
+    </ion-row>
+  
+  </ion-card>
   
 </ion-content>

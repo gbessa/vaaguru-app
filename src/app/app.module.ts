@@ -10,12 +10,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScheduleService } from '../services/domain/schedule.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    ListPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -24,15 +24,15 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ScheduleService
+    ScheduleService,
+    AuthService,
+    StorageService
   ]
 })
 export class AppModule {}

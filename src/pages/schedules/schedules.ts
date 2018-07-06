@@ -26,4 +26,11 @@ export class SchedulesPage {
       error => {})
   }
 
+
+  showDetail(schedule_id: string) {
+    this.navCtrl.push('ScheduleDetailPage', {
+      schedule_id: schedule_id
+    })
+  }  
+
 }
