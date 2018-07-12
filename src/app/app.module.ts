@@ -12,6 +12,7 @@ import { ScheduleService } from '../services/domain/schedule.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
+import { InscriptionService } from '../services/domain/inscription.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StorageService } from '../services/storage.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ScheduleService,
+    InscriptionService,
     AuthService,
     StorageService
   ]

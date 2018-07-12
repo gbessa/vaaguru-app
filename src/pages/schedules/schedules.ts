@@ -27,9 +27,9 @@ export class SchedulesPage {
   }
 
 
-  showDetail(schedule_id: string) {
+  showDetail(item: ScheduleDTO) {
     this.navCtrl.push('ScheduleDetailPage', {
-      schedule_id: schedule_id
+      item: item
     })
   }  
 

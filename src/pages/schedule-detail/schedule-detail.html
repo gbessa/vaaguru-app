@@ -9,20 +9,14 @@
   
   
   <ion-content padding>
-    <ion-fab top right edge>
-      <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
-    </ion-fab>
-    <ion-card>
-        <img [src]="item?.imageUrl || 'assets/imgs/prod.jpg'">
-        <ion-card-content>
-          <ion-card-title>
-            {{item?.nome}}
-          </ion-card-title>
-          <p>
-            {{item?.preco | currency}}
-          </p>
-        </ion-card-content>
-    </ion-card>
+    <p>{{item?.date}}</p>
+    <h2>Confirmados</h2>
 
-    <button ion-button block outline (click)="addToCartItem(item)">Confirmar Presença</button>
+    <ol>
+      <li *ngFor="let inscription of inscriptions">{{inscription?.rower.name}}</li>
+    </ol> 
+
+    <h2>Lista de Espera</h2>
+
+    <button ion-button block outline (click)="confirm()">Confirmar Presença</button>
   </ion-content>

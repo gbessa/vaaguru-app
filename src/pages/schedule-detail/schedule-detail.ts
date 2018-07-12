@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ScheduleDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ScheduleDTO } from '../../models/schedule.dto';
+import { InscriptionDTO } from '../../models/inscription.dto';
+import { InscriptionService } from '../../services/domain/inscription.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ScheduleDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  item: ScheduleDTO;
+  inscriptions: InscriptionDTO[];
+  nome: string;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public inscriptionService: InscriptionService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ScheduleDetailPage');
+    this.item = this.navParams.get('item');
+    console.log('buscando por......', this.item.id);
+    this.inscriptionService.findAll(this.item.id)
+    .subscribe(response => {
+      this.inscriptions = response;
+    },
+    error => {})
   }
 
 }
