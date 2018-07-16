@@ -15,4 +15,15 @@ export class InscriptionService {
         return this.http.get<InscriptionDTO[]>(`${API_CONFIG.baseUrl}/schedules/${schedule_id}/inscriptions`);
     }
 
+    insert(obj: any) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/inscriptions`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        )
+    }
+
 }

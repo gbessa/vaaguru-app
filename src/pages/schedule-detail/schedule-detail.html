@@ -7,9 +7,8 @@
     </ion-navbar>
   </ion-header>
   
-  
   <ion-content padding>
-    <p>{{item?.date}}</p>
+    <p>{{item?.date | date:'EEEE, MMMM d, y'}}</p>
     <h2>Confirmados</h2>
 
     <ol>
@@ -18,5 +17,5 @@
 
     <h2>Lista de Espera</h2>
 
-    <button ion-button block outline (click)="confirm()">Confirmar Presença</button>
+    <button ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
   </ion-content>

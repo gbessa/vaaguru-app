@@ -14,21 +14,40 @@ export class ScheduleDetailPage {
   item: ScheduleDTO;
   inscriptions: InscriptionDTO[];
   nome: string;
-
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public inscriptionService: InscriptionService) {
-  }
-
-  ionViewDidLoad() {
-    this.item = this.navParams.get('item');
-    console.log('buscando por......', this.item.id);
-    this.inscriptionService.findAll(this.item.id)
+    }
+    
+    ionViewDidLoad() {
+      this.loadData();
+    }
+    
+    loadData() {
+      this.item = this.navParams.get('item');
+      this.inscriptionService.findAll(this.item.id)
+      .subscribe(response => {
+        this.inscriptions = response;
+      },
+      error => {})
+    }
+    
+    confirmInscription() {
+    const newInscription: any = {
+      rower_id: 1,
+      schedule_id: this.item.id
+    };
+    this.inscriptionService.insert(newInscription)
     .subscribe(response => {
-      this.inscriptions = response;
+      this.loadData();
     },
-    error => {})
+    error => {
+      if (error.status == 403) {
+        this.navCtrl.setRoot('HomePage');
+      }
+    })
   }
 
 }
