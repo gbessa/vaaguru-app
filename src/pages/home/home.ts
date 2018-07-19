@@ -39,14 +39,14 @@ export class HomePage {
   }
 
   login() {
-    this.navCtrl.setRoot('SchedulesPage'); 
+    //this.navCtrl.setRoot('SchedulesPage'); 
 
-    // this.auth.authenticate(this.creds)
-    //   .subscribe(response => {
-    //     this.auth.successfullLogin(response.headers.get('Authorization'));
-    //     this.navCtrl.setRoot('SchedulesPage');  
-    //   },
-    // error => {})
+    this.auth.authenticate(this.creds)
+      .subscribe(response => {
+        this.auth.successfullLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('SchedulesPage');  
+      },
+    error => {})
   }
 
   signup() {

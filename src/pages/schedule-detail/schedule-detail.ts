@@ -13,7 +13,6 @@ export class ScheduleDetailPage {
 
   item: ScheduleDTO;
   inscriptions: InscriptionDTO[];
-  nome: string;
   
   constructor(
     public navCtrl: NavController, 
@@ -27,11 +26,17 @@ export class ScheduleDetailPage {
     
     loadData() {
       this.item = this.navParams.get('item');
+      if (this.item === undefined) {
+        this.navCtrl.setRoot('HomePage');
+        return
+      }
       this.inscriptionService.findAll(this.item.id)
       .subscribe(response => {
         this.inscriptions = response;
       },
-      error => {})
+      error => {
+        console.log('Error !! Load Data');
+      })
     }
     
     confirmInscription() {
