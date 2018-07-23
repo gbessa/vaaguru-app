@@ -22,7 +22,6 @@ export class TeamsPage {
     this.loadData();
   }
 
-
   loadData() {
     this.teamService.findAll()
       .subscribe(response => {
@@ -30,5 +29,11 @@ export class TeamsPage {
       },
       error => {})
   }  
+
+  showDetail(item: TeamDTO) {
+    this.navCtrl.push('TeamDetailPage', {
+      item: item
+    })
+  }   
 
 }

@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ScheduleService } from '../../services/domain/schedule.service';
 import { TeamDTO } from '../../models/team.dto';
 import { TeamService } from '../../services/domain/team.service';
-import { RowerDTO } from '../../models/rower.dto';
 import { StorageService } from '../../services/storage.service';
 import { ScheduleDTO } from '../../models/schedule.dto';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -42,7 +42,7 @@ export class ScheduleNewPage {
       error => {})
 
       this.formGroup = this.formBuilder.group({
-        date: [null, [Validators.required]],
+        date: [new Date(moment().locale('pt-br').format()).toISOString(), [Validators.required]],
         numOfSeats: [null, [Validators.required]],
         team_id: [null, Validators.required],
         rowerResponsable_email: [this.rowers[0].email, Validators.required],
