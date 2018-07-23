@@ -20,7 +20,7 @@
   <ion-card *ngFor="let item of items" (click)="showDetail(item)">
     <ion-item>
       <ion-avatar item-start>
-        <img src="assets/imgs/{{item.rowerResposable.imageUrl}}">
+        <img src="assets/imgs/{{item.rowerResposable.imageUrl || 'avatar-blank.png'}}">
       </ion-avatar>
       <h2>{{item.team.name}} - {{item.date | date:'HH:mm'}}</h2>
       <p>{{item.date | date:'EEEE, MMMM d, y'}}</p>

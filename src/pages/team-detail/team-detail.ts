@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TeamDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TeamDTO } from '../../models/team.dto';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TeamDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  item: TeamDTO;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TeamDetailPage');
+    this.item = this.navParams.get('item');
+    this.loadData();
+  }
+
+  loadData() {    
+    if (this.item === undefined) {
+      this.navCtrl.setRoot('HomePage');
+      return
+    }
   }
 
 }

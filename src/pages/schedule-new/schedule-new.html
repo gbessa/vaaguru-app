@@ -11,7 +11,7 @@
     <form [formGroup]="formGroup" (ngSubmit)="confirm(); $event.preventDefault()">
         <ion-item>
           <ion-label stacked>Data*</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" type="text"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" formControlName="date" type="text"></ion-datetime>
         </ion-item>
         <p *ngIf="formGroup.controls['date'].dirty && formGroup.controls['date'].errors" class="danger" margin-left>Valor inválido</p>
         <ion-item>
