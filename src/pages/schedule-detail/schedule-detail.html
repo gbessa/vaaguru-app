@@ -7,22 +7,43 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content padding>
+  <ion-content class="outer-content">
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
         pullingText="Atualizar">
       </ion-refresher-content>
     </ion-refresher>
-    <p>{{item?.date | date:'EEEE, MMMM d, y'}}</p>
-    <p>{{item?.obs}}</p>
-    <h2>Confirmados</h2>
 
-    <ol>
-      <p *ngIf="inscriptions?.length==0">Lista Vazia</p>
-      <li *ngFor="let inscription of inscriptions">{{inscription?.rower.name}}</li>
-    </ol> 
+    <ion-list-header>
+        <ion-icon item-end name="alarm"></ion-icon>
+        Horário
+    </ion-list-header>
+    <ion-list>
+      <ion-item>
+        {{item?.date | date:'hh:mm (EEEE, d/m/yy)'}}
+        <p>{{item?.obs}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-list-header>
+      <ion-icon item-end name="checkmark"></ion-icon>
+      Confirmados
+    </ion-list-header>
+    <ion-list>
+      <ion-item>
+        <ol>
+          <p *ngIf="inscriptions?.length==0">Lista Vazia</p>
+          <li *ngFor="let inscription of inscriptions">{{inscription?.rower.name}}</li>
+        </ol> 
+      </ion-item>
+    </ion-list>
 
-    <h2>Lista de Espera</h2>
+    <ion-list-header>
+        <ion-icon item-end name="glasses"></ion-icon>
+        Lista de Espera
+      </ion-list-header>
+    <ion-list>
+        <ion-item></ion-item>
+    </ion-list>
 
     <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
     <button *ngIf="isCurrRowerInList" ion-button block outline (click)="removeInscription()" color="danger">Sair da Lista</button>

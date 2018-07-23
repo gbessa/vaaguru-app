@@ -1,18 +1,22 @@
-<!--
-  Generated template for the TeamNewPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>TeamNew</ion-title>
+    <ion-title>Nova Equipe</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <form [formGroup]="formGroup" (ngSubmit)="confirm(); $event.preventDefault()">
+        <ion-item>
+            <ion-label stacked>Nome*</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Descrição*</ion-label>
+            <ion-input formControlName="description" type="text"></ion-input>
+        </ion-item>
+        <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar Equipe</button>    
+      </form>
 </ion-content>

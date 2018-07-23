@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TeamNewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -15,7 +9,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TeamNewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  formGroup: FormGroup;
+
+  constructor(
+    public navCtrl: NavController, 
+    public formBuilder: FormBuilder,
+    public navParams: NavParams) {
+
+      this.formGroup = this.formBuilder.group({
+        name: [null, [Validators.required]],
+        description: [null, Validators.required],
+        imageUrl: [null, null]
+      });
   }
 
   ionViewDidLoad() {
