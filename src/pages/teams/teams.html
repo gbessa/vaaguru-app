@@ -1,20 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Agendas Abertas</ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Equipes</ion-title>
+    </ion-navbar>
+  </ion-header>
+
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingText="Atualizar">
-    </ion-refresher-content>
-  </ion-refresher>
   <ion-fab top right edge>
-    <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
+    <button navPush="TeamNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
   </ion-fab>
 
   <ion-card *ngFor="let item of items" (click)="showDetail(item)">
@@ -26,7 +22,7 @@
       <p>{{item.date | date:'EEEE, MMMM d, y'}}</p>
     </ion-item>
   
-    <img src="assets/imgs/{{item.team.imageUrl}}">
+    <img src="assets/imgs/{{item.imageUrl}}">
   
     <ion-card-content>
       <p>{{item.obs}}</p>
@@ -49,5 +45,5 @@
     </ion-row>
   
   </ion-card>
-  
+
 </ion-content>

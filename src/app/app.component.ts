@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,35 +12,38 @@ export class MyApp {
 
   rootPage: string = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, iconName: string, component: any}>;
 
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public authService: AuthService
   ) {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Agendas', component: 'SchedulesPage' },
-      { title: 'Logout', component: '' },
+      { title: 'Meus Dados', iconName: 'person', component: 'ProfilePage' },
+      { title: 'Agendas', iconName: 'calendar', component: 'SchedulesPage' },
+      { title: 'Equipes', iconName: 'people', component: 'TeamsPage' },
+      { title: 'Logout', iconName: 'log-out', component: '' },
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.title === 'Logout') {
+      this.authService.logout();
+      this.nav.setRoot('HomePage');
+    } else {
+      this.nav.setRoot(page.component);
+    }
   }
 }

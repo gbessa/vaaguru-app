@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ScheduleDTO } from '../../models/schedule.dto';
 import { InscriptionDTO } from '../../models/inscription.dto';
 import { InscriptionService } from '../../services/domain/inscription.service';
+import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
@@ -13,46 +14,97 @@ export class ScheduleDetailPage {
 
   item: ScheduleDTO;
   inscriptions: InscriptionDTO[];
-  
+  isCurrRowerInList: boolean;
+  localUser: any;
+
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public inscriptionService: InscriptionService) {
-    }
+    public inscriptionService: InscriptionService,
+    public storage: StorageService,
+    private alertCtrl: AlertController) {
+      this.localUser = this.storage.getLocalUser();
+  }
+
+  ionViewDidLoad() {
+    this.item = this.navParams.get('item');
+    this.loadData();
+  }
+
+  loadData() {
+    this.isCurrRowerInList = false;
     
-    ionViewDidLoad() {
-      this.loadData();
+    if (this.item === undefined) {
+      this.navCtrl.setRoot('HomePage');
+      return
     }
-    
-    loadData() {
-      this.item = this.navParams.get('item');
-      if (this.item === undefined) {
-        this.navCtrl.setRoot('HomePage');
-        return
-      }
-      this.inscriptionService.findAll(this.item.id)
+    this.inscriptionService.findAll(this.item.id)
       .subscribe(response => {
         this.inscriptions = response;
+        this.inscriptions.map(inscription => {
+          if (inscription.rower.email === this.localUser.email) {
+            this.isCurrRowerInList = true;
+          }
+        })
       },
-      error => {
-        console.log('Error !! Load Data');
-      })
-    }
-    
-    confirmInscription() {
+        error => {
+          console.log('Error !! Load Data');
+        })
+  }
+
+  confirmInscription() {
     const newInscription: any = {
-      rower_id: 1,
+      rower_email: this.localUser.email,
       schedule_id: this.item.id
     };
     this.inscriptionService.insert(newInscription)
-    .subscribe(response => {
-      this.loadData();
-    },
-    error => {
-      if (error.status == 403) {
-        this.navCtrl.setRoot('HomePage');
+      .subscribe(response => {
+        this.loadData();
+      },
+        error => {
+          if (error.status == 403) {
+            this.navCtrl.setRoot('HomePage');
+          }
+        })
+  }
+
+  runRemoveInscription() {
+    
+    let inscription: InscriptionDTO[] = this.inscriptions.filter(inscription => inscription.rower.email === this.localUser.email);
+    this.inscriptionService.remove(inscription[0])
+      .subscribe(response => {
+        this.loadData();
+      },
+      error => {
+        console.log(error)
       }
-    })
+    )
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }  
+
+  removeInscription() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirma',
+      message: 'Deseja realmente tirar o nome da Lista?',
+      buttons: [
+        {
+          text: 'NÃO'
+        },
+        {
+          text: 'SIM',
+          handler: () => {
+            this.runRemoveInscription();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

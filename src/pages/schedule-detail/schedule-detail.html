@@ -8,15 +8,22 @@
   </ion-header>
   
   <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingText="Atualizar">
+      </ion-refresher-content>
+    </ion-refresher>
     <p>{{item?.date | date:'EEEE, MMMM d, y'}}</p>
+    <p>{{item?.obs}}</p>
     <h2>Confirmados</h2>
 
     <ol>
+      <p *ngIf="inscriptions?.length==0">Lista Vazia</p>
       <li *ngFor="let inscription of inscriptions">{{inscription?.rower.name}}</li>
     </ol> 
 
     <h2>Lista de Espera</h2>
 
-    <button ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
-    <button ion-button block outline (click)="confirmInscription()" color="danger">Sair da Lista</button>
+    <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
+    <button *ngIf="isCurrRowerInList" ion-button block outline (click)="removeInscription()" color="danger">Sair da Lista</button>
   </ion-content>

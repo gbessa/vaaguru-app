@@ -19,6 +19,10 @@ export class SchedulesPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     this.scheduleService.findAll()
       .subscribe(response => {
         this.items = response;
@@ -26,11 +30,17 @@ export class SchedulesPage {
       error => {})
   }
 
-
   showDetail(item: ScheduleDTO) {
     this.navCtrl.push('ScheduleDetailPage', {
       item: item
     })
   }  
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  } 
 
 }

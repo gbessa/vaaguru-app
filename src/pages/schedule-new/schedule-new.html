@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Novo Agendamento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="formGroup" (ngSubmit)="confirm(); $event.preventDefault()">
+        <ion-item>
+          <ion-label stacked>Data*</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" type="text"></ion-datetime>
+        </ion-item>
+        <p *ngIf="formGroup.controls['date'].dirty && formGroup.controls['date'].errors" class="danger" margin-left>Valor inválido</p>
+        <ion-item>
+            <ion-label stacked>Lugares Disponíveis (quantidade)*</ion-label>
+            <ion-input formControlName="numOfSeats" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Team*</ion-label>
+            <ion-select formControlName="team_id">
+              <ion-option *ngFor="let team of teams; first as f" [value]="team.id" [selected]="f">{{team.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Responsável*</ion-label>
+          <ion-select formControlName="rowerResponsable_email">
+            <ion-option *ngFor="let rower of rowers; first as f" [value]="rower.email" [selected]="f">{{rower.name}}</ion-option>
+          </ion-select>
+      </ion-item>
+        <ion-item>
+          <ion-label stacked>Observações</ion-label>
+          <ion-input formControlName="obs" type="text"></ion-input>
+        </ion-item>
+        <button ion-button block type="submit" [disabled]="formGroup.invalid">Publicar Agendamento</button>    
+      </form>
+</ion-content>

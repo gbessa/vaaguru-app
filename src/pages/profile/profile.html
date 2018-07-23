@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Profile</ion-title>
+      </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
+  <h2 text-center>{{rower?.name}}</h2>
+  <ion-avatar>
+    <img class="circle" [src]="profileImage">
+  </ion-avatar>
+  <p text-center>{{rower?.email}}</p>
+  <p text-center>{{rower?.phone}}</p>
+    
+</ion-content>

@@ -15,4 +15,19 @@ export class ScheduleService {
         return this.http.get<ScheduleDTO[]>(`${API_CONFIG.baseUrl}/schedules`);
     }
 
+    findById(id: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/schedules/${id}`);
+    }    
+
+    insert(obj: ScheduleDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/schedules`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        )
+    }
+
 }
