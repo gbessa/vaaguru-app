@@ -4,6 +4,7 @@ import { ScheduleDTO } from '../../models/schedule.dto';
 import { InscriptionDTO } from '../../models/inscription.dto';
 import { InscriptionService } from '../../services/domain/inscription.service';
 import { StorageService } from '../../services/storage.service';
+import { ScheduleService } from '../../services/domain/schedule.service';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class ScheduleDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public inscriptionService: InscriptionService,
+    public scheduleService: ScheduleService,
     public storage: StorageService,
     private alertCtrl: AlertController) {
       this.localUser = this.storage.getLocalUser();
@@ -105,6 +107,37 @@ export class ScheduleDetailPage {
       ]
     });
     alert.present();
+  }
+
+  removeSchedule() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirma',
+      message: 'Deseja realmente EXCLUIR esta agenda?',
+      buttons: [
+        {
+          text: 'NÃO'
+        },
+        {
+          text: 'SIM',
+          handler: () => {
+            this.runRemoveSchedule();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  runRemoveSchedule() {
+    
+    this.scheduleService.remove(this.item)
+      .subscribe(response => {
+        this.navCtrl.pop();
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
 }

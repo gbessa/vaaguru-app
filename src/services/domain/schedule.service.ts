@@ -30,4 +30,13 @@ export class ScheduleService {
         )
     }
 
+    remove(obj: ScheduleDTO) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/schedules/${obj.id}`,
+            {
+                observe: 'response',
+                responseType: 'text'
+            })
+    }    
+
 }
