@@ -16,7 +16,7 @@ import * as moment from 'moment';
 export class ScheduleNewPage {
 
   formGroup: FormGroup;
-  teams: TeamDTO[];
+  ownedTeams: TeamDTO[];
   rowers: any[] = [];
   localUser: any;
   
@@ -34,10 +34,10 @@ export class ScheduleNewPage {
         name: this.localUser.email
       });
 
-      this.teamService.findAll()
+      this.teamService.findOwned()
       .subscribe(response => {
-        this.teams = response;
-
+        //console.log(response);
+        this.ownedTeams = response;
       },
       error => {})
 

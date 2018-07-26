@@ -15,6 +15,14 @@ export class TeamService {
         return this.http.get<TeamDTO[]>(`${API_CONFIG.baseUrl}/teams`);
     }
 
+    findOwned(): Observable<TeamDTO[]> {
+        return this.http.get<TeamDTO[]>(`${API_CONFIG.baseUrl}/teams?isowner=true`);
+    }
+
+    findById(id: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/teams/${id}`);
+    }    
+
     insert(obj: any) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/teams`,

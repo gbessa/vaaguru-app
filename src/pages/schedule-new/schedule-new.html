@@ -21,7 +21,7 @@
         <ion-item>
             <ion-label stacked>Team*</ion-label>
             <ion-select formControlName="team_id">
-              <ion-option *ngFor="let team of teams; first as f" [value]="team.id" [selected]="f">{{team.name}}</ion-option>
+              <ion-option *ngFor="let team of ownedTeams; first as f" [value]="team.id">{{team.name}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>

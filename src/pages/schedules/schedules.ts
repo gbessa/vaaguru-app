@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ScheduleService } from '../../services/domain/schedule.service';
 import { ScheduleDTO } from '../../models/schedule.dto';
+import { TeamService } from '../../services/domain/team.service';
+import { TeamDTO } from '../../models/team.dto';
 
 @IonicPage()
 @Component({
@@ -11,11 +13,13 @@ import { ScheduleDTO } from '../../models/schedule.dto';
 export class SchedulesPage {
 
   items: ScheduleDTO[];
+  ownedTeams: TeamDTO[];
   
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public scheduleService: ScheduleService) {
+    public scheduleService: ScheduleService,
+    public teamService: TeamService) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +32,12 @@ export class SchedulesPage {
         this.items = response;
       },
       error => {})
+
+    this.teamService.findOwned()
+    .subscribe(response => {
+      this.ownedTeams = response;
+    },
+    error => {})
   }
 
   showDetail(item: ScheduleDTO) {

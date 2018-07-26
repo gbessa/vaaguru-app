@@ -16,12 +16,12 @@
   <ion-card *ngFor="let item of items" (click)="showDetail(item)">
     <ion-item>
       <ion-avatar item-start>
-        <img src="assets/imgs/{{item.imageUrl}}">
+        <img src="assets/imgs/{{item.imageUrl || 'team-blank.jpg'}}">
       </ion-avatar>
       <h2>{{item.name}}</h2>
     </ion-item>
   
-    <img src="assets/imgs/{{item.imageUrl}}">
+    <img src="assets/imgs/{{item.imageUrl || 'team-blank.jpg'}}">
   
     <ion-card-content>
       <p>{{item.obs}}</p>

@@ -16,6 +16,7 @@ export class ScheduleDetailPage {
   item: ScheduleDTO;
   inscriptions: InscriptionDTO[];
   isCurrRowerInList: boolean;
+  isTeamOwner: boolean;
   localUser: any;
 
   constructor(
@@ -35,6 +36,13 @@ export class ScheduleDetailPage {
 
   loadData() {
     this.isCurrRowerInList = false;
+    this.isTeamOwner = false;
+
+    this.item.team.owners.map(owner => {
+      if (owner.email === this.localUser.email) {
+        this.isTeamOwner = true;
+      }
+    })
     
     if (this.item === undefined) {
       this.navCtrl.setRoot('HomePage');
@@ -47,7 +55,7 @@ export class ScheduleDetailPage {
           if (inscription.rower.email === this.localUser.email) {
             this.isCurrRowerInList = true;
           }
-        })
+        })        
       },
         error => {
           console.log('Error !! Load Data');
@@ -132,7 +140,7 @@ export class ScheduleDetailPage {
     
     this.scheduleService.remove(this.item)
       .subscribe(response => {
-        this.navCtrl.pop();
+        this.navCtrl.setRoot('SchedulesPage');
       },
       error => {
         console.log(error)

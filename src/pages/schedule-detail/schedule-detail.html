@@ -47,5 +47,5 @@
 
     <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
     <button *ngIf="isCurrRowerInList" ion-button block outline (click)="removeInscription()" color="danger">Sair da Lista</button>
-    <button *ngIf="isCurrRowerInList" ion-button block (click)="removeSchedule()" color="danger">Excluir Agenda</button>
+    <button *ngIf="isTeamOwner" ion-button block (click)="removeSchedule()" color="danger">Excluir Agenda</button>
   </ion-content>
