@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { TeamDTO } from "../../models/team.dto";
 import { Observable } from "rxjs";
 import { API_CONFIG } from "../../config/api.config";
+import { InvitationDTO } from "../../models/invitation.dto";
 
 @Injectable()
 export class TeamService {
@@ -21,7 +22,11 @@ export class TeamService {
 
     findById(id: string) {
         return this.http.get(`${API_CONFIG.baseUrl}/teams/${id}`);
-    }    
+    } 
+    
+    findInvitations(teamId: number): Observable<InvitationDTO[]> {
+        return this.http.get<InvitationDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/invitations`);
+    }
 
     insert(obj: any) {
         return this.http.post(

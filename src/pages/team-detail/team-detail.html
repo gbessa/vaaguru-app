@@ -8,9 +8,6 @@
   </ion-header>
 
 <ion-content class="outer-content">
-  <ion-fab top right edge>
-    <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
-  </ion-fab>
   <ion-list-header>
       Dados da Equipe
     </ion-list-header>
@@ -25,19 +22,35 @@
       <img class="circle" [src]="teamImage">
     </ion-item>
   </ion-list>
+  <ion-segment [(ngModel)]="members">
+    <ion-segment-button value="enrolled">
+      Inscritos
+    </ion-segment-button>
+    <ion-segment-button value="inviteds">
+      Convidados
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="members">
+
+    <ion-list *ngSwitchCase="'enrolled'">
+        <ion-item *ngFor="let member of team?.members">
+          <ion-avatar item-start>
+            <img src="assets/imgs/{{member.imageUrl || 'avatar-blank.png'}}">
+          </ion-avatar>
+          <h2>{{member.name}}</h2>
+          <p>{{member.email}}</p>
+        </ion-item>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'inviteds'">
+      <ion-item *ngFor="let invited of inviteds">
+        <p>{{invited.invited_email}}</p>
+      </ion-item>
+    </ion-list>
+
+  </div>
   <ion-fab right bottom>
-    <button navPush="ScheduleNewPage" ion-fab mini color="secondary"><ion-icon name="md-share"></ion-icon></button>
+    <button (click)="inviteRowers()" ion-fab mini color="secondary"><ion-icon name="md-share"></ion-icon></button>
   </ion-fab>
-  <ion-list-header>
-    Inscritos
-  </ion-list-header>
-  <ion-list>
-    <ion-item *ngFor="let member of team?.members">
-      <ion-avatar item-start>
-        <img src="assets/imgs/{{member.imageUrl || 'avatar-blank.png'}}">
-      </ion-avatar>
-      <h2>{{member.name}}</h2>
-      <p>{{member.email}}</p>
-    </ion-item>
-  </ion-list>
+  
 </ion-content>
