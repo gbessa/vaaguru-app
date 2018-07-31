@@ -9,7 +9,8 @@ import { TeamDTO } from '../../models/team.dto';
 })
 export class TeamDetailPage {
 
-  item: TeamDTO;
+  team: TeamDTO;
+  teamImage;
 
   constructor(
     public navCtrl: NavController, 
@@ -17,15 +18,16 @@ export class TeamDetailPage {
   }
 
   ionViewDidLoad() {
-    this.item = this.navParams.get('item');
+    this.team = this.navParams.get('item');
     this.loadData();
   }
 
   loadData() {    
-    if (this.item === undefined) {
+    if (this.team === undefined) {
       this.navCtrl.setRoot('HomePage');
       return
     }
+    this.teamImage = `assets/imgs/${this.team.imageUrl || 'team-blank.jpg'}`
   }
 
 }
