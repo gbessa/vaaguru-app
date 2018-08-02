@@ -8,6 +8,9 @@
   </ion-header>
   
   <ion-content padding class="outer-content">
+    <ion-fab top right edge>
+      <button (click)="edit()" ion-fab mini><ion-icon name="create"></ion-icon></button>
+    </ion-fab>
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
         pullingText="Atualizar">
