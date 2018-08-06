@@ -141,4 +141,8 @@ export class ScheduleDetailPage {
     )
   }
 
+  edit() {
+    this.navCtrl.push('ScheduleNewPage', {item: this.item})
+  }
+
 }
