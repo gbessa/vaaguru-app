@@ -22,13 +22,13 @@
         <ion-item>
             <ion-label stacked>Estado*</ion-label>
             <ion-select formControlName="stateId" (ionChange)="updateCities()">
-              <ion-option *ngFor="let state of states | orderBy: 'nome'; first as f" [value]="state.id" [selected]="f">{{state.nome}}</ion-option>
+              <ion-option *ngFor="let state of states; first as f" [value]="state.nome" [selected]="f">{{state.nome}}</ion-option>
             </ion-select>
         </ion-item>    
         <ion-item>
             <ion-label stacked>Cidade*</ion-label>
             <ion-select formControlName="cityId">
-              <ion-option *ngFor="let city of cities" [value]="city.id">{{city.nome}}</ion-option>
+              <ion-option *ngFor="let city of cities" [value]="city">{{city}}</ion-option>
             </ion-select>
         </ion-item>           
         <ion-item>

@@ -17,7 +17,7 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { TeamService } from '../services/domain/team.service';
 import { RowerService } from '../services/domain/rower.service';
 import { CountryService } from '../services/domain/country.service';
-import { StateService } from '../services/domain/state.service';
+import { CityService } from '../services/domain/city.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { StateService } from '../services/domain/state.service';
     RowerService,
     InscriptionService,
     CountryService,
-    StateService,
+    CityService,
     AuthService,
     StorageService,
     AuthInterceptorProvider,
