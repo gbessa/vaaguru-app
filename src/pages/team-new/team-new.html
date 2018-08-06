@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Nova Equipe</ion-title>
+    <ion-title>Cadastrar sua Equipe</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,6 +13,24 @@
             <ion-label stacked>Nome*</ion-label>
             <ion-input formControlName="name" type="text"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label stacked>País*</ion-label>
+            <ion-select formControlName="countryId" (ionChange)="updateCities()">
+              <ion-option *ngFor="let country of countries;" [value]="country.alpha3Code">{{country.name}}</ion-option>
+            </ion-select>
+        </ion-item>           
+        <ion-item>
+            <ion-label stacked>Estado*</ion-label>
+            <ion-select formControlName="stateId" (ionChange)="updateCities()">
+              <ion-option *ngFor="let state of states | orderBy: 'nome'; first as f" [value]="state.id" [selected]="f">{{state.nome}}</ion-option>
+            </ion-select>
+        </ion-item>    
+        <ion-item>
+            <ion-label stacked>Cidade*</ion-label>
+            <ion-select formControlName="cityId">
+              <ion-option *ngFor="let city of cities" [value]="city.id">{{city.nome}}</ion-option>
+            </ion-select>
+        </ion-item>           
         <ion-item>
             <ion-label stacked>Descrição*</ion-label>
             <ion-input formControlName="description" type="text"></ion-input>

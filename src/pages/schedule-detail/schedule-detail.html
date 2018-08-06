@@ -15,8 +15,8 @@
     </ion-refresher>
 
     <ion-list-header>
-        <ion-icon item-end name="alarm"></ion-icon>
-        Horário
+      <ion-icon name="alarm"></ion-icon>
+      Horário
     </ion-list-header>
     <ion-list>
       <ion-item>
@@ -25,7 +25,7 @@
       </ion-item>
     </ion-list>
     <ion-list-header>
-      <ion-icon item-end name="checkmark"></ion-icon>
+      <ion-icon name="checkmark"></ion-icon>
       Confirmados
     </ion-list-header>
     <ion-list>
@@ -38,14 +38,14 @@
     </ion-list>
 
     <ion-list-header>
-        <ion-icon item-end name="glasses"></ion-icon>
-        Lista de Espera
-      </ion-list-header>
+      <ion-icon name="glasses"></ion-icon>
+      Lista de Espera
+    </ion-list-header>
     <ion-list>
         <ion-item></ion-item>
     </ion-list>
 
     <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
     <button *ngIf="isCurrRowerInList" ion-button block outline (click)="removeInscription()" color="danger">Sair da Lista</button>
-    <button *ngIf="isTeamOwner" ion-button block (click)="removeSchedule()" color="danger">Excluir Agenda</button>
+    <button *ngIf="isOwner" ion-button block (click)="removeSchedule()" color="danger">Excluir Agenda</button>
   </ion-content>

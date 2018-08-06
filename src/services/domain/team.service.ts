@@ -4,6 +4,7 @@ import { TeamDTO } from "../../models/team.dto";
 import { Observable } from "rxjs";
 import { API_CONFIG } from "../../config/api.config";
 import { InvitationDTO } from "../../models/invitation.dto";
+import { RowerDTO } from "../../models/rower.dto";
 
 @Injectable()
 export class TeamService {
@@ -26,6 +27,10 @@ export class TeamService {
     
     findInvitations(teamId: number): Observable<InvitationDTO[]> {
         return this.http.get<InvitationDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/invitations`);
+    }
+
+    findOwners(teamId: number): Observable<RowerDTO[]> {
+        return this.http.get<RowerDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/owners`);
     }
 
     insert(obj: any) {

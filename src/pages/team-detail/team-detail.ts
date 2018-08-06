@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { TeamDTO } from '../../models/team.dto';
 import { InvitationDTO } from '../../models/invitation.dto';
 import { TeamService } from '../../services/domain/team.service';
+import { RowerDTO } from '../../models/rower.dto';
+import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
@@ -15,17 +17,20 @@ export class TeamDetailPage {
   teamImage;
   inviteds: InvitationDTO[];
   members: string = "enrolled";
+  localUser: any;
   isOwner: boolean;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public teamService: TeamService,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public storage: StorageService) {
   }
 
   ionViewDidLoad() {
     this.team = this.navParams.get('item');
+    this.localUser = this.storage.getLocalUser();
     this.loadData();
   }
 
@@ -39,7 +44,20 @@ export class TeamDetailPage {
     this.teamService.findInvitations(this.team.id)
     .subscribe(response => {
       this.inviteds = response;
-    })
+    },
+    error => {});
+
+    this.team.owners.map(rower => {
+      if (rower.email === this.localUser.email) this.isOwner = true
+    });
+
+    // this.teamService.findOwners(this.team.id)
+    // .subscribe(response => {
+    //   console.log(response);
+    //   this.owners = response;
+    // },
+    // error => {});
+
   }
 
   inviteRowers() {

@@ -10,7 +10,8 @@ import { TeamService } from '../../services/domain/team.service';
 })
 export class TeamsPage {
 
-  items: TeamDTO[];
+  teams: TeamDTO[];
+  teams_select: string = "mine";
 
   constructor(
     public navCtrl: NavController, 
@@ -25,7 +26,7 @@ export class TeamsPage {
   loadData() {
     this.teamService.findAll()
       .subscribe(response => {
-        this.items = response;
+        this.teams = response;
       },
       error => {})
   }  

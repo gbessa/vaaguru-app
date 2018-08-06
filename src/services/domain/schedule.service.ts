@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
 import { ScheduleDTO } from "../../models/schedule.dto";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class ScheduleService {

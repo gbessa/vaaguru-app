@@ -16,6 +16,7 @@ export class ScheduleDetailPage {
   item: ScheduleDTO;
   inscriptions: InscriptionDTO[];
   isCurrRowerInList: boolean;
+  isOwner: boolean;
   localUser: any;
 
   constructor(

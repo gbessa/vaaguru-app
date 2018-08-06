@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TeamService } from '../../services/domain/team.service';
 import { TeamDTO } from '../../models/team.dto';
 import { StorageService } from '../../services/storage.service';
+import { CountryService } from '../../services/domain/country.service';
+import { StateService } from '../../services/domain/state.service';
 
 @IonicPage()
 @Component({
@@ -14,24 +16,38 @@ export class TeamNewPage {
 
   formGroup: FormGroup;
   localUser: any;
+  countries: any;
+  states: any;
+  cities: any;
 
   constructor(
     public navCtrl: NavController, 
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public teamService: TeamService,
-    public storage: StorageService) {
+    public storage: StorageService,
+    public countryService: CountryService,
+    public stateService: StateService) {
 
       this.localUser = this.storage.getLocalUser();
 
       this.formGroup = this.formBuilder.group({
         name: [null, [Validators.required]],
+        countryId: ['BRA', [Validators.required]],
+        stateId: [null, [Validators.required]],
+        cityId: [null, [Validators.required]],
         description: [null, Validators.required],
         imageUrl: [null, null]
       });
   }
 
   ionViewDidLoad() {
+    this.countryService.findAll()
+    .subscribe(response => {
+      this.countries = response;
+      this.updateStates();
+    },
+    error => {})
   }
 
   confirm() {
@@ -55,6 +71,19 @@ export class TeamNewPage {
   private extractId(location: string): string {
     let position = location.lastIndexOf('/');
     return location.substring(position+1, location.length);
+  }
+
+  updateStates() {
+    this.stateService.findAll()
+    .subscribe(response => {
+      this.states = response;
+      this.updateCities();
+    },
+    error => {})
+  }
+
+  updateCities(){
+
   }
 
 }
