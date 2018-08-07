@@ -11,6 +11,11 @@
   <ion-fab *ngIf="isOwner" top right edge>
     <button navPush="TeamNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
   </ion-fab>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Atualizar">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list-header>
       Dados da Equipe
     </ion-list-header>

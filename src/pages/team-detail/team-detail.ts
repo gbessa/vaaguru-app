@@ -51,18 +51,19 @@ export class TeamDetailPage {
       if (rower.email === this.localUser.email) this.isOwner = true
     });
 
-    // this.teamService.findOwners(this.team.id)
-    // .subscribe(response => {
-    //   console.log(response);
-    //   this.owners = response;
-    // },
-    // error => {});
-
   }
 
   inviteRowers() {
-    const modal = this.modalCtrl.create('InvitationNewPage');
+    const modal = this.modalCtrl.create('InvitationNewPage', {teamId: this.team.id});
     modal.present();
   }
+
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  } 
 
 }
