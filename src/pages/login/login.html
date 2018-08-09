@@ -4,16 +4,22 @@
   <form>
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input [(ngModel)]="creds.email" name="email" type="text"></ion-input>
+      <ion-input [(ngModel)]="creds.email" name="email" type="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Senha</ion-label>
-      <ion-input [(ngModel)]="creds.password" name="password" type="password"></ion-input>
+      <ion-input [(ngModel)]="creds.password" name="password" [type]="passwordInputType">
+      </ion-input>
+      <button ion-button clear (click)="toggleShow()" item-right>
+        <ion-icon [hidden]="show" name="eye"></ion-icon>
+        <ion-icon [hidden]="!show" name="eye-off"></ion-icon>
+      </button>
     </ion-item>
+
     <button ion-button block (click)="login()"> Entrar</button>
   </form>
-
+  
   <button ion-button block outline (click)="signup()"> Registrar</button>
 
 </ion-content>

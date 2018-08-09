@@ -38,7 +38,7 @@ export class ScheduleDetailPage {
     this.isCurrRowerInList = false;
     
     if (this.item === undefined) {
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('LoginPage');
       return
     }
     this.inscriptionService.findAll(this.item.id)
@@ -66,7 +66,7 @@ export class ScheduleDetailPage {
       },
         error => {
           if (error.status == 403) {
-            this.navCtrl.setRoot('HomePage');
+            this.navCtrl.setRoot('LoginPage');
           }
         })
   }

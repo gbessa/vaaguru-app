@@ -5,21 +5,24 @@ import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-login',
+  templateUrl: 'login.html'
 })
-export class HomePage {
+export class LoginPage {
 
   creds: CredentialsDTO = {
     email: "",
     password: ""
   };
+  show: boolean = false;
+  passwordInputType: string = 'password'
 
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
     public auth: AuthService
-  ){}
+  ){
+  }
 
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
@@ -39,8 +42,7 @@ export class HomePage {
   }
 
   login() {
-    //this.navCtrl.setRoot('SchedulesPage'); 
-
+    //this.navCtrl.setRoot('SchedulesPage');  BYPASS
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfullLogin(response.headers.get('Authorization'));
@@ -51,6 +53,15 @@ export class HomePage {
 
   signup() {
     this.navCtrl.push('SignupPage');
+  }
+
+  goToForgotPassword() {
+    this.navCtrl.push('ForgotPasswordPage');
+  }
+
+  toggleShow(){
+    this.show = !(this.show);
+    this.passwordInputType = this.show ? 'text' : 'password'
   }
 
 }

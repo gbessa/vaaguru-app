@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'HomePage';
+  rootPage: string = 'LoginPage';
 
   pages: Array<{title: string, iconName: string, component: any}>;
 
@@ -26,7 +26,7 @@ export class MyApp {
       { title: 'Meus Dados', iconName: 'person', component: 'ProfilePage' },
       { title: 'Agendas', iconName: 'calendar', component: 'SchedulesPage' },
       { title: 'Equipes', iconName: 'people', component: 'TeamsPage' },
-      { title: 'Logout', iconName: 'log-out', component: '' },
+      { title: 'Sair', iconName: 'log-out', component: '' },
     ];
 
   }
@@ -41,7 +41,7 @@ export class MyApp {
   openPage(page) {
     if (page.title === 'Logout') {
       this.authService.logout();
-      this.nav.setRoot('HomePage');
+      this.nav.setRoot('LoginPage');
     } else {
       this.nav.setRoot(page.component);
     }

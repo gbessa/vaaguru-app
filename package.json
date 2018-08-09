@@ -1,7 +1,7 @@
 {
-  "name": "vaaguru-app",
+  "name": "vaaguru",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Gustavo Bessa",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {

@@ -36,7 +36,7 @@ export class TeamDetailPage {
 
   loadData() {    
     if (this.team === undefined) {
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('LoginPage');
       return
     }
 
