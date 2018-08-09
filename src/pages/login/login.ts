@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, MenuController } from 'ionic-angular';
+import { NavController, IonicPage, MenuController, ModalController } from 'ionic-angular';
 import { CredentialsDTO } from '../../models/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 
@@ -20,6 +20,7 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
+    public modalCtrl: ModalController,
     public auth: AuthService
   ){
   }
@@ -51,12 +52,13 @@ export class LoginPage {
     error => {})
   }
 
-  signup() {
+  goToSignup() {
     this.navCtrl.push('SignupPage');
   }
 
-  goToForgotPassword() {
-    this.navCtrl.push('ForgotPasswordPage');
+  forgotPassword() {
+    const modal = this.modalCtrl.create('ForgotPasswordPage');
+    modal.present();
   }
 
   toggleShow(){

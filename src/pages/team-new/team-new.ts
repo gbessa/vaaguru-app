@@ -61,7 +61,6 @@ export class TeamNewPage {
   confirm() {
     let newTeam = this.formGroup.value;
     newTeam.owner_email = this.localUser.email;
-    console.log(newTeam);
     this.teamService.insert(newTeam)
     .subscribe(response => {
       const teamId : string = this.extractId(response.headers.get('location'));

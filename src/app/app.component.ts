@@ -39,7 +39,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    if (page.title === 'Logout') {
+    if (page.title === 'Sair') {
       this.authService.logout();
       this.nav.setRoot('LoginPage');
     } else {

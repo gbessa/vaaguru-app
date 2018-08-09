@@ -19,7 +19,17 @@
 
     <button ion-button block (click)="login()"> Entrar</button>
   </form>
-  
-  <button ion-button block outline (click)="signup()"> Registrar</button>
+  <ion-row class="alt-options">
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="forgot-button" color=danger (click)="forgotPassword()">Esqueci a senha</button>
+    </ion-col>
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="signup-button" (click)="goToSignup()">Registrar</button>
+    </ion-col>
+  </ion-row>
+  <p class="auth-divider">
+    ou
+  </p>
+  <button ion-button block outline (click)="doFacebookLogin()">Entrar com Facebook</button>
 
 </ion-content>
