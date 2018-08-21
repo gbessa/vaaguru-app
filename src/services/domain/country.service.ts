@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { API_CONFIG } from "../../config/api.config";
-import { CountryDTO } from "../../models/country.dto";
 
 @Injectable()
 export class CountryService {

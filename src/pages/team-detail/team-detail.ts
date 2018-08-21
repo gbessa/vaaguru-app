@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { TeamDTO } from '../../models/team.dto';
 import { InvitationDTO } from '../../models/invitation.dto';
 import { TeamService } from '../../services/domain/team.service';
-import { RowerDTO } from '../../models/rower.dto';
 import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
