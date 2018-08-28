@@ -1,6 +1,7 @@
 <ion-content padding>
-  <img src="assets/imgs/vaaguru-logo.png" alt="logo">
 
+  <img class="vaaguru-logo" src="assets/imgs/vaaguru-logo.jpg" alt="logo">
+  <h2 class="vaaguru">VA'A GURU</h2>
   <form>
     <ion-item>
       <ion-label stacked>Email</ion-label>
@@ -16,19 +17,21 @@
       </button>
     </ion-item>
 
-    <button ion-button block (click)="login()"> Entrar</button>
+    <button padding ion-button block color="dark" (click)="login()"> Entrar</button>
   </form>
+  <p class="auth-divider">
+  </p>
+
   <ion-row class="alt-options">
-    <ion-col no-padding width-50>
-      <button ion-button block clear class="forgot-button" color=danger (click)="forgotPassword()">Esqueci a senha</button>
+    <ion-col no-padding>
+      <button ion-button block outline class="forgot-button" color="dark" (click)="forgotPassword()">Esqueci a senha</button>
     </ion-col>
-    <ion-col no-padding width-50>
-      <button ion-button block clear class="signup-button" (click)="goToSignup()">Registrar</button>
+    <ion-col no-padding>
+      <button ion-button block outline class="signup-button" color="dark" (click)="goToSignup()">Registrar</button>
     </ion-col>
   </ion-row>
   <p class="auth-divider">
-    ou
   </p>
-  <button ion-button block outline (click)="doFacebookLogin()">Entrar com Facebook</button>
+  <button ion-button block outline (click)="doFacebookLogin()"> Entrar com Facebook</button>
 
 </ion-content>
