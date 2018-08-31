@@ -49,6 +49,7 @@
     </ion-list>
 
     <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Confirmar Presença</button>
+    <button *ngIf="!isCurrRowerInList" ion-button block outline (click)="confirmInscription()">Entrar na lista de Espera</button>
     <button *ngIf="isCurrRowerInList" ion-button block outline (click)="removeInscription()" color="secondary">Sair da Lista</button>
     <button *ngIf="isOwner" ion-button block (click)="removeSchedule()" color="danger">Excluir Agenda</button>
   </ion-content>

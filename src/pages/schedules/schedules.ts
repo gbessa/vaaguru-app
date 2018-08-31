@@ -28,6 +28,8 @@ export class SchedulesPage {
 
       // set status bar to white
       this.statusBar.backgroundColorByHexString('#4B4E6D');
+
+      this.statusBar.show();
   }
 
   ionViewDidLoad() {
