@@ -3,6 +3,8 @@ import { NavController, IonicPage, MenuController, ModalController, ToastControl
 import { CredentialsDTO } from '../../models/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { StatusBar } from '@ionic-native/status-bar';
+import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
@@ -19,6 +21,7 @@ export class LoginPage {
   show: boolean = false;
   passwordInputType: string = 'password'
   faceResponse: any;
+  previousLocalUser: any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,8 +29,12 @@ export class LoginPage {
     public modalCtrl: ModalController,
     public auth: AuthService,
     private fb: Facebook,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private statusBar: StatusBar,
+    public storage: StorageService
   ){
+    this.statusBar.hide();
+    this.previousLocalUser = this.storage.getLocalUser();
   }
 
   ionViewWillEnter() {
@@ -48,12 +55,11 @@ export class LoginPage {
   }
 
   login() {
-    //this.navCtrl.setRoot('SchedulesPage');  BYPASS
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfullLogin(response.headers.get('Authorization'));
         this.presentToast('Logged! Seja bem vindo.');
-        this.navCtrl.setRoot('SchedulesPage');  
+        this.onSuccessfullLogin();  
       },
     error => {})
   }
@@ -66,13 +72,18 @@ export class LoginPage {
         .subscribe(response => {
           this.auth.successfullLogin(response.headers.get('Authorization'));
           this.presentToast('Logged with Facebook!');
-          this.navCtrl.setRoot('SchedulesPage');  
+          this.onSuccessfullLogin(); 
         },
         error => {this.presentToast('Falha no login')});
       }).catch(e => {
         this.presentToast('Error logging into Facebook');
       });
         
+  }
+
+  onSuccessfullLogin() {
+    this.statusBar.show();
+    this.navCtrl.setRoot('SchedulesPage'); 
   }
 
   goToSignup() {

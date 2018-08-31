@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="outer-content" class="masters">
+<ion-content no-padding class="outer-content" class="masters">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingText="Atualizar">
@@ -18,16 +18,29 @@
   </ion-fab>
 
   <ion-list>
-    <ion-item *ngFor="let item of items" (click)="showDetail(item)" class="masters2">
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/{{item.team.imageUrl || 'team-blank.jpg'}}">
-      </ion-thumbnail>
-      <h2>{{item.team.name}}</h2>
-      <p>{{item.date | date:'HH:mm (EEEE, MMMM d, y)'}}</p>
-      <button ion-button icon-start clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{item.numOfInscriptions}} (Confirmados)</div>
-      </button>
+    <ion-item *ngFor="let item of items" (click)="showDetail(item)" class="masters">
+      <ion-row>
+        <ion-col class="schedule-date">
+            <h2 class="schedule-day">{{item.date | date:'dd'}}</h2>
+            <h3 class="schedule-month">{{item.date | date:'MMMM'}}</h3>
+            <h4 class="schedule-time">{{item.date | date:'hh:mm'}}</h4>
+        </ion-col>
+        <ion-col col-7>
+          <h2 class="schedule-day">{{item?.team.name}}</h2>
+          <button ion-button icon-start clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{item.numOfInscriptions}} (Confirmados)</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-avatar item-end>
+            <img src="assets/imgs/{{item.team.imageUrl || 'team-blank.jpg'}}">
+          </ion-avatar> -->
+          <ion-thumbnail class="avatar-image">
+              <img src="assets/imgs/{{item.team.imageUrl || 'team-blank.jpg'}}">
+          </ion-thumbnail>
+        </ion-col>
+      </ion-row>
     </ion-item>
   </ion-list>
   

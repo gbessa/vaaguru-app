@@ -7,4 +7,12 @@ page-teams {
     .masters {
         background-color: #efefef;
     }
+
+    .avatar-image {
+        border-radius: 6px;
+
+        img {
+            border-radius: 16px;
+        }
+    }
 }

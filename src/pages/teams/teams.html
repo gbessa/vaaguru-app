@@ -28,10 +28,11 @@
   <div [ngSwitch]="teams_select">
 
     <ion-list *ngSwitchCase="'mine'">
-      <ion-item *ngFor="let item of teams" (click)="showDetail(item)"  class="masters2">
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/{{item.imageUrl || 'team-blank.jpg'}}">
-        </ion-thumbnail>
+      <ion-item *ngFor="let item of teams" (click)="showDetail(item)"  class="masters">
+          <ion-thumbnail item-start class="avatar-image">
+            <img src="assets/imgs/{{item.imageUrl || 'team-blank.jpg'}}">
+            <!-- <preload-image class="avatar-image" [ratio]="{w:1, h:1}" [src]="assets/imgs/{{item.imageUrl || 'team-blank.jpg'}}"></preload-image> -->
+          </ion-thumbnail>
         <h2>{{item.name}}</h2>
         <p>{{item.description}}</p>
         <button ion-button icon-start clear small>
