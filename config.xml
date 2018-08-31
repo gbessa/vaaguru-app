@@ -82,5 +82,10 @@
     <plugin name="cordova-plugin-ionic-webview" spec="1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.3.0">
+        <variable name="APP_ID" value="230852310875844" />
+        <variable name="APP_NAME" value="VAAGURU" />
+        <variable name="ANDROID_SDK_VERSION" value="4.+" />
+    </plugin>
     <engine name="android" spec="6.4.0" />
 </widget>

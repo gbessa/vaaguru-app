@@ -27,7 +27,7 @@ export class SchedulesPage {
       //this.statusBar.overlaysWebView(true);
 
       // set status bar to white
-      this.statusBar.backgroundColorByHexString('#143109');
+      this.statusBar.backgroundColorByHexString('#4B4E6D');
   }
 
   ionViewDidLoad() {

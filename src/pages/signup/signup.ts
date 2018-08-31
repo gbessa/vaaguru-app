@@ -26,7 +26,7 @@ export class SignupPage {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         phone: ['', [Validators.required]],
-        isSteerer: ['']
+        isSteerer: [false]
       });
       
   }

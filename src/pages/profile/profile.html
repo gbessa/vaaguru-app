@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color=secondary>
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -8,22 +8,22 @@
 </ion-header>
 
 
-<ion-content padding class="outer-content">
+<ion-content padding class="outer-content" class="masters">
   <ion-fab top right edge>
     <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
   </ion-fab>
-  <ion-item>
+  <ion-item class="masters">
     <h2 text-center>{{rower?.name}}</h2>
   </ion-item>
-  <ion-item>
+  <ion-item class="masters">
     <ion-icon name="mail" item-end></ion-icon>
     <p text-center>{{rower?.email}}</p>
   </ion-item>
-  <ion-item>
+  <ion-item class="masters">
     <ion-icon name="call" item-end></ion-icon>
     <p text-center>{{rower?.phone}}</p>
   </ion-item>
-  <ion-item>
+  <ion-item class="masters">
     <img class="circle" [src]="profileImage">
   </ion-item>
     

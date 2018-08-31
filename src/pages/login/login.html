@@ -1,13 +1,13 @@
-<ion-content padding>
-  <img src="assets/imgs/vaaguru-logo.png" alt="logo">
+<ion-content padding class="masters">
+  <img src="assets/imgs/logo_vaa.png" alt="logo">
 
   <form>
-    <ion-item>
+    <ion-item class="masters">
       <ion-label stacked>Email</ion-label>
       <ion-input [(ngModel)]="creds.email" name="email" type="email"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="masters">
       <ion-label stacked>Senha</ion-label>
       <ion-input [(ngModel)]="creds.password" name="password" [type]="passwordInputType"></ion-input>
       <button ion-button clear (click)="toggleShow()" item-right>
@@ -20,7 +20,7 @@
   </form>
   <ion-row class="alt-options">
     <ion-col no-padding width-50>
-      <button ion-button block clear class="forgot-button" color=danger (click)="forgotPassword()">Esqueci a senha</button>
+      <button ion-button block clear class="forgot-button" color=secondary (click)="forgotPassword()">Esqueci a senha</button>
     </ion-col>
     <ion-col no-padding width-50>
       <button ion-button block clear class="signup-button" (click)="goToSignup()">Registrar</button>
@@ -29,6 +29,6 @@
   <p class="auth-divider">
     ou
   </p>
-  <button ion-button block outline (click)="doFacebookLogin()">Entrar com Facebook</button>
-
+  <button ion-button block outline (click)="loginWithFacebook()">Entrar com Facebook</button>
+  <p>{{ faceResponse | json }}</p>
 </ion-content>

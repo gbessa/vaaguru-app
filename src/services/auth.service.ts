@@ -27,6 +27,22 @@ export class AuthService {
             })
     }
 
+    authenticateWithFacebook(token: string) {
+        let creds: CredentialsDTO = {
+            email: "",
+            password: "",
+            facebookToken: token
+        };
+        creds.facebookToken = token;
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/login`, 
+            creds,
+            {
+               observe: 'response',
+               responseType: 'text'
+            })
+    }
+
     successfullLogin(authorizationValue: string) {
         let tok = authorizationValue.substring(7);
         let user : LocalUser = {

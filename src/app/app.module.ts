@@ -19,6 +19,7 @@ import { RowerService } from '../services/domain/rower.service';
 import { CountryService } from '../services/domain/country.service';
 import { CityService } from '../services/domain/city.service';
 import { InvitationService } from '../services/domain/invitation.service';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { InvitationService } from '../services/domain/invitation.service';
     StorageService,
     InvitationService,
     AuthInterceptorProvider,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    Facebook
   ]
 })
 export class AppModule {}
