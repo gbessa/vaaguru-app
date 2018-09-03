@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar color=secondary>
+    <ion-title>Convites Pendentes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h2>Opa!</h2>
+  <h2>Você possui convites pendentes.</h2>
+  <ion-list>
+    <ion-item *ngFor="let invitation of invitations">
+      <h2>{{invitation.team_name}}</h2>
+      <p>{{invitation.inviter_email}}</p>
+      <button ion-button outline item-end color="secondary" (click)="accept(invitation)">Aceitar</button>
+      <button ion-button outline item-end color="danger">Rejeitar</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
