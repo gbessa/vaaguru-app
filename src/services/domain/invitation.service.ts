@@ -16,6 +16,11 @@ export class InvitationService {
         return this.http.get<InvitationDTO[]>(`${API_CONFIG.baseUrl}/invitations`);
     }    
 
+        
+    findOpenInvitationsByTeam(teamId: number): Observable<InvitationDTO[]> {
+        return this.http.get<InvitationDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/invitations`);
+    }
+
     insert(obj: InvitationDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/invitations`,

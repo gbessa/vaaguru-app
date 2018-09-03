@@ -24,10 +24,6 @@ export class TeamService {
     findById(id: string) {
         return this.http.get(`${API_CONFIG.baseUrl}/teams/${id}`);
     } 
-    
-    findInvitations(teamId: number): Observable<InvitationDTO[]> {
-        return this.http.get<InvitationDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/invitations`);
-    }
 
     findOwners(teamId: number): Observable<RowerDTO[]> {
         return this.http.get<RowerDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/owners`);

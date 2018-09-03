@@ -47,7 +47,9 @@ export class InvitationNewPage {
       this.presentToast('O convite foi enviado com sucesso!!');
       this.dismiss();
     },
-    error => {});
+    error => {
+      
+    });
   }
 
   dismiss() {

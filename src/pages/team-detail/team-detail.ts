@@ -4,6 +4,7 @@ import { TeamDTO } from '../../models/team.dto';
 import { InvitationDTO } from '../../models/invitation.dto';
 import { TeamService } from '../../services/domain/team.service';
 import { StorageService } from '../../services/storage.service';
+import { InvitationService } from '../../services/domain/invitation.service';
 
 @IonicPage()
 @Component({
@@ -23,6 +24,7 @@ export class TeamDetailPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public teamService: TeamService,
+    public invitationService: InvitationService,
     public modalCtrl: ModalController,
     public storage: StorageService) {
   }
@@ -40,7 +42,7 @@ export class TeamDetailPage {
     }
 
     this.teamImage = `assets/imgs/${this.team.imageUrl || 'team-blank.jpg'}`;
-    this.teamService.findInvitations(this.team.id)
+    this.invitationService.findOpenInvitationsByTeam(this.team.id)
     .subscribe(response => {
       this.inviteds = response;
     },
