@@ -46,12 +46,14 @@ export class LoginPage {
   }
 
   ionViewDidEnter() {
+    /*
     this.auth.refreshToken()
     .subscribe(response => {
       this.auth.successfullLogin(response.headers.get('Authorization'));
       this.navCtrl.setRoot('SchedulesPage');  
     },
     error => {}) 
+    */
   }
 
   login() {

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SplashPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, ViewController, NavController } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SplashPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public viewCtrl: ViewController,
+    public splashScreen: SplashScreen,
+    public auth: AuthService
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashPage');
+  ionViewDidEnter() {
+ 
+    this.auth.refreshToken()
+    .subscribe(response => {
+      this.auth.successfullLogin(response.headers.get('Authorization'));
+      this.navCtrl.setRoot('SchedulesPage');  
+    },
+    error => {
+      this.navCtrl.setRoot('LoginPage');  
+    }) 
   }
 
 }

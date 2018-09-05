@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
+import { SplashPage } from '../pages/splash/splash';
 
 @Component({
   templateUrl: 'app.html'
@@ -10,7 +11,8 @@ import { AuthService } from '../services/auth.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'LoginPage';
+  //rootPage: string = 'LoginPage';
+  rootPage: string = 'SplashPage';
 
   pages: Array<{title: string, iconName: string, component: any}>;
 
@@ -18,7 +20,8 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public authService: AuthService
+    public authService: AuthService,
+    public modalCtrl: ModalController
   ) {
     this.initializeApp();
 
@@ -34,7 +37,11 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
+
+      //let splash = this.modalCtrl.create('SplashPage');
+      //splash.present();
+
     });
   }
 
