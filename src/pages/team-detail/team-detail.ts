@@ -54,6 +54,10 @@ export class TeamDetailPage {
 
   }
 
+  edit() {
+    this.navCtrl.push('TeamEditPage', {item: this.team})
+  }
+
   inviteRowers() {
     const modal = this.modalCtrl.create('InvitationNewPage', {teamId: this.team.id});
     modal.present();

@@ -40,4 +40,13 @@ export class TeamService {
         )
     }
 
+    remove(obj: any) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/teams/${obj.id}`,
+            {
+                observe: 'response',
+                responseType: 'text'
+            })
+    }
+
 }

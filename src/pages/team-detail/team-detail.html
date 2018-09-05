@@ -9,7 +9,7 @@
 
 <ion-content class="outer-content" class="masters">
   <ion-fab *ngIf="isOwner" top right edge>
-    <button navPush="TeamNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
+    <button (click)="edit()" ion-fab mini><ion-icon name="create"></ion-icon></button>
   </ion-fab>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
