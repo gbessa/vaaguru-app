@@ -30,6 +30,7 @@
       <p text-center>{{team?.description}}</p>
     </ion-item>
   </ion-list>
+  <button ion-button block outline (click)="exitFromTeam()" color="secondary">Deixar a Equipe</button>
   <ion-segment [(ngModel)]="members">
     <ion-segment-button value="enrolled">
       Inscritos

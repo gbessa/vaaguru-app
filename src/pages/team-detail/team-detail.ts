@@ -63,6 +63,14 @@ export class TeamDetailPage {
     modal.present();
   }
 
+  exitFromTeam() {
+    this.teamService.unsubscribeMe(this.team.id)
+    .subscribe(response => {
+      alert('Você deixou a equipe!');
+      this.navCtrl.setRoot('TeamsPage');
+    },
+    error => {});
+  }
 
   doRefresh(refresher) {
     this.loadData();

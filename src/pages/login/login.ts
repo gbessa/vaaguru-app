@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, IonicPage, MenuController, ModalController, ToastController } from 'ionic-angular';
 import { CredentialsDTO } from '../../models/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageService } from '../../services/storage.service';
+import { Observable } from 'rxjs';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @IonicPage()
 @Component({
@@ -22,6 +24,7 @@ export class LoginPage {
   passwordInputType: string = 'password'
   faceResponse: any;
   previousLocalUser: any;
+  isKeyboardOpen: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -31,10 +34,24 @@ export class LoginPage {
     private fb: Facebook,
     private toastCtrl: ToastController,
     private statusBar: StatusBar,
-    public storage: StorageService
+    public storage: StorageService,
+    private keyboard: Keyboard,
+    private zone: NgZone
   ){
     this.statusBar.hide();
     this.previousLocalUser = this.storage.getLocalUser();
+
+    this.isKeyboardOpen = false;
+    this.keyboard.onKeyboardShow()
+    .subscribe(() => {
+      this.zone.run(() => {
+        this.isKeyboardOpen = true;
+      })
+    });
+    this.keyboard.onKeyboardHide()
+    .subscribe(() => {
+      this.isKeyboardOpen = false;
+    });
   }
 
   ionViewWillEnter() {
@@ -54,13 +71,20 @@ export class LoginPage {
     },
     error => {}) 
     */
+
+    // Observable.merge(this.nativeKeyboard.onKeyboardHide(), this.keyboard.didHide)
+    // .subscribe((e: any) => {
+    //   this.keyboardHeight = e.keyboardHeight | 0;
+    // });
+
+    //this.keyboard.disableScroll(true);
   }
 
   login() {
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfullLogin(response.headers.get('Authorization'));
-        this.presentToast('Logged! Seja bem vindo.');
+        this.presentToast('Logado! Seja bem vindo remador.');
         this.onSuccessfullLogin();  
       },
     error => {})
@@ -73,7 +97,7 @@ export class LoginPage {
         this.auth.authenticateWithFacebook(res.authResponse.accessToken)
         .subscribe(response => {
           this.auth.successfullLogin(response.headers.get('Authorization'));
-          this.presentToast('Logged with Facebook!');
+          this.presentToast('Logado com Facebook!');
           this.onSuccessfullLogin(); 
         },
         error => {this.presentToast('Falha no login')});

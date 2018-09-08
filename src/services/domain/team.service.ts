@@ -49,4 +49,7 @@ export class TeamService {
             })
     }
 
+    unsubscribeMe(teamId: number): Observable<RowerDTO[]> {
+        return this.http.get<RowerDTO[]>(`${API_CONFIG.baseUrl}/teams/${teamId}/unsubscribe`);
+    }
 }

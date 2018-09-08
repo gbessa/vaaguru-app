@@ -20,6 +20,7 @@ import { CountryService } from '../services/domain/country.service';
 import { CityService } from '../services/domain/city.service';
 import { InvitationService } from '../services/domain/invitation.service';
 import { Facebook } from '@ionic-native/facebook';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { Facebook } from '@ionic-native/facebook';
     InvitationService,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
-    Facebook
+    Facebook,
+    Keyboard
   ]
 })
 export class AppModule {}

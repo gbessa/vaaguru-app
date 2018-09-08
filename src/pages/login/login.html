@@ -26,9 +26,11 @@
       <button ion-button block clear class="signup-button" (click)="goToSignup()">Registrar</button>
     </ion-col>
   </ion-row>
-  <p class="auth-divider">
-    ou
-  </p>
-  <button ion-button block outline (click)="loginWithFacebook()">Entrar com Facebook</button>
+  <div *ngIf="!isKeyboardOpen">
+    <p class="auth-divider">
+      ou
+    </p>
+    <button ion-button block outline (click)="loginWithFacebook()">Entrar com Facebook</button>
+  </div>
   <p>{{ faceResponse | json }}</p>
 </ion-content>

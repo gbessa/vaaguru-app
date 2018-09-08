@@ -3,7 +3,6 @@ import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
-import { SplashPage } from '../pages/splash/splash';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,8 +10,8 @@ import { SplashPage } from '../pages/splash/splash';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: string = 'LoginPage';
-  rootPage: string = 'SplashPage';
+  rootPage: string = 'LoginPage';
+  //rootPage: string = 'SplashPage';
 
   pages: Array<{title: string, iconName: string, component: any}>;
 
@@ -38,10 +37,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       //this.splashScreen.hide();
-
       //let splash = this.modalCtrl.create('SplashPage');
       //splash.present();
-
     });
   }
 
