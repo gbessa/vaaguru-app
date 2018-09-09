@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth.service';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageService } from '../../services/storage.service';
-import { Observable } from 'rxjs';
 import { Keyboard } from '@ionic-native/keyboard';
 
 @IonicPage()
@@ -38,8 +37,16 @@ export class LoginPage {
     private keyboard: Keyboard,
     private zone: NgZone
   ){
+
     this.statusBar.hide();
     this.previousLocalUser = this.storage.getLocalUser();
+
+    this.auth.refreshToken()
+    .subscribe(response => {
+      this.auth.successfullLogin(response.headers.get('Authorization'));
+      this.navCtrl.setRoot('SchedulesPage');  
+    },
+    error => {}) 
 
     this.isKeyboardOpen = false;
     this.keyboard.onKeyboardShow()
@@ -54,6 +61,10 @@ export class LoginPage {
     });
   }
 
+  ionViewDidEnter() {
+  
+  }
+
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
@@ -62,23 +73,6 @@ export class LoginPage {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidEnter() {
-    /*
-    this.auth.refreshToken()
-    .subscribe(response => {
-      this.auth.successfullLogin(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('SchedulesPage');  
-    },
-    error => {}) 
-    */
-
-    // Observable.merge(this.nativeKeyboard.onKeyboardHide(), this.keyboard.didHide)
-    // .subscribe((e: any) => {
-    //   this.keyboardHeight = e.keyboardHeight | 0;
-    // });
-
-    //this.keyboard.disableScroll(true);
-  }
 
   login() {
     this.auth.authenticate(this.creds)

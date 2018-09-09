@@ -18,12 +18,12 @@
     </ion-refresher>
 
     <ion-list-header class="masters">
-      <ion-icon name="alarm"></ion-icon>
-      Horário
+      <ion-icon name="alarm">
+        {{item?.date | date:'hh:mm (EEEE, dd/MM/yy)'}}
+      </ion-icon>
     </ion-list-header>
     <ion-list>
       <ion-item >
-        {{item?.date | date:'hh:mm (EEEE, d/m/yy)'}}
         <p>{{item?.obs}}</p>
       </ion-item>
     </ion-list>

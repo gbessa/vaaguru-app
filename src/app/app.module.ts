@@ -21,6 +21,7 @@ import { CityService } from '../services/domain/city.service';
 import { InvitationService } from '../services/domain/invitation.service';
 import { Facebook } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
+import { DatePicker } from '@ionic-native/date-picker';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
     Facebook,
-    Keyboard
+    Keyboard,
+    DatePicker
   ]
 })
 export class AppModule {}

@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { TeamDTO } from "../../models/team.dto";
 import { Observable } from "rxjs";
 import { API_CONFIG } from "../../config/api.config";
-import { InvitationDTO } from "../../models/invitation.dto";
 import { RowerDTO } from "../../models/rower.dto";
 
 @Injectable()

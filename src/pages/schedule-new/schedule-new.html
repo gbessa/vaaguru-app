@@ -1,31 +1,28 @@
 <ion-header>
-
   <ion-navbar color="secondary">
     <ion-title>Novo Agendamento</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
     <form [formGroup]="formGroup" (ngSubmit)="confirm(); $event.preventDefault()">
-        <ion-item>
-          <ion-label stacked>Data*</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" formControlName="date" type="text"></ion-datetime>
+        <ion-item (click)="showDateTimePicker($event)">
+          <ion-label stacked>Data</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" formControlName="date" [min]="minDate" [max]="maxDate" disabled></ion-datetime>
         </ion-item>
         <p *ngIf="formGroup.controls['date'].dirty && formGroup.controls['date'].errors" class="danger" margin-left>Valor inválido</p>
         <ion-item>
-            <ion-label stacked>Lugares Disponíveis (quantidade)*</ion-label>
+            <ion-label stacked>Lugares Disponíveis (quantidade)</ion-label>
             <ion-input formControlName="numOfSeats" type="text"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label stacked>Team*</ion-label>
+            <ion-label stacked>Team</ion-label>
             <ion-select formControlName="team_id">
               <ion-option *ngFor="let team of ownedTeams; first as f" [value]="team.id">{{team.name}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label stacked>Responsável*</ion-label>
+          <ion-label stacked>Responsável</ion-label>
           <ion-select formControlName="rowerResponsable_email">
             <ion-option *ngFor="let rower of rowers; first as f" [value]="rower.email" [selected]="f">{{rower.name}}</ion-option>
           </ion-select>
