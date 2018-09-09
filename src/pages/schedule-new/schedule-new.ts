@@ -71,9 +71,10 @@ export class ScheduleNewPage {
       this.scheduleService.findById(scheduleId)
       .subscribe(response =>  {
         const schedule = response as ScheduleDTO;
-        this.navCtrl.setRoot("ScheduleDetailPage", {
+        this.navCtrl.pop();
+        this.navCtrl.push("ScheduleDetailPage", {
           item: schedule
-        })
+        });
       })
     },
     error => {});
