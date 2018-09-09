@@ -9,24 +9,27 @@
 
 
 <ion-content padding class="outer-content" class="masters">
+
   <ion-fab top right edge>
     <button navPush="TeamNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
   </ion-fab>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingText="Atualizar">
     </ion-refresher-content>
   </ion-refresher>
+
   <ion-segment [(ngModel)]="teams_select">
     <ion-segment-button value="mine">
       Minhas
     </ion-segment-button>
-    <ion-segment-button value="all">
-      Todas
+    <ion-segment-button value="find">
+      Encontrar
     </ion-segment-button>
   </ion-segment>
-  <div [ngSwitch]="teams_select">
 
+  <div [ngSwitch]="teams_select">
     <ion-list *ngSwitchCase="'mine'">
       <ion-item *ngFor="let item of teams" (click)="showDetail(item)"  class="masters">
           <ion-thumbnail item-start class="avatar-image">
@@ -42,9 +45,14 @@
       </ion-item>
     </ion-list>
   
-    <ion-list *ngSwitchCase="'all'">
+    <ion-list *ngSwitchCase="'find'">
+      <ion-searchbar
+        [(ngModel)]="myInput"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput($event)"
+        (ionCancel)="onCancel($event)">
+      </ion-searchbar>
     </ion-list>
-
   </div>
 
 </ion-content>

@@ -13,11 +13,11 @@ import { ScheduleService } from '../../services/domain/schedule.service';
 })
 export class ScheduleDetailPage {
 
+  localUser: any;
   item: ScheduleDTO;
+  isOwner: boolean;
   inscriptions: InscriptionDTO[];
   isCurrRowerInList: boolean;
-  isOwner: boolean;
-  localUser: any;
 
   constructor(
     public navCtrl: NavController,
