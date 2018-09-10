@@ -8,13 +8,15 @@
 </ion-header>
 
 <ion-content no-padding class="outer-content" class="masters">
+  
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingText="Atualizar">
     </ion-refresher-content>
   </ion-refresher>
+
   <ion-fab *ngIf="ownedTeams?.length > 0" top right edge>
-    <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="create"></ion-icon></button>
+    <button navPush="ScheduleNewPage" ion-fab mini><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
   <ion-list>
