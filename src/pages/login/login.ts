@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, IonicPage, MenuController, ModalController, ToastController } from 'ionic-angular';
+import { NavController, IonicPage, MenuController, ModalController, ToastController, LoadingController } from 'ionic-angular';
 import { CredentialsDTO } from '../../models/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -35,7 +35,8 @@ export class LoginPage {
     private statusBar: StatusBar,
     public storage: StorageService,
     private keyboard: Keyboard,
-    private zone: NgZone
+    private zone: NgZone,
+    private loadingCtrl: LoadingController
   ){
 
     this.statusBar.hide();
@@ -75,13 +76,23 @@ export class LoginPage {
 
 
   login() {
+    let loading = this.loadingCtrl.create({
+      content: 'Autenticando...'
+    });
+
+    loading.present();
+
     this.auth.authenticate(this.creds)
       .subscribe(response => {
+        loading.dismiss();
         this.auth.successfullLogin(response.headers.get('Authorization'));
         this.presentToast('Logado! Seja bem vindo remador.');
         this.onSuccessfullLogin();  
       },
-    error => {})
+    error => {
+      loading.dismiss();
+      this.presentToast('Falha na autenticação.');
+    })
   }
 
   loginWithFacebook() {
